@@ -1,5 +1,6 @@
 package xyz.nagdibai.superwallpapers
 
+import at.jor.superhero.Saamaan
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

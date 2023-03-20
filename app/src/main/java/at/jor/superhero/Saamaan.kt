@@ -15,4 +15,8 @@ data class Category (
     val name: String,
     val cover: String,
     val wallies: List<String>
-)
+) {
+    public override fun toString(): String {
+        return "Name - $name, Cover - $cover, Wallies - ${wallies.toString()}"
+    }
+}

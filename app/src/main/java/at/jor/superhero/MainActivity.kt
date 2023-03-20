@@ -20,14 +20,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bnd: HomeBinding
     private var BASE_URL = "http://nagdibai.xyz/wally-api/"
+    private val homeCategoryList = ArrayList<Category>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bnd = HomeBinding.inflate(layoutInflater)
-        val view = bnd.root
         setContentView(R.layout.home)
         grabThemWallpapers()
-
     }
 
     private fun grabThemWallpapers() {
@@ -48,8 +47,14 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Saamaan>, response: Response<Saamaan>) {
                 if (response.code() == 200) {
                     val data = response.body()!!
-                    Log.e("Dhuski Chandan", "" + data)
 
+                    data.appBlob.categories.forEach{
+                        homeCategoryList.add(Category(it.name, it.cover, it.wallies))
+                    }
+
+                    homeCategoryList.forEach {
+                        Log.e("Lenduk paav", it.toString())
+                    }
                 } else {
                     Log.e("MainActivity", "API failed 400")
                 }

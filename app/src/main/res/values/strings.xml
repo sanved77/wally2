@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Superhero Wallpapers</string>
     <string name="app">Superhero</string>
+    <string name="ad_admob_app_id">ca-app-pub-2380327133535299~7689999129</string>
+
+<!--     Original -->
+<!--    <string name="ad_home_banner">ca-app-pub-2380327133535299/7983026054</string>-->
+
+<!--    Testing ads -->
+    <string name="ad_home_banner">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

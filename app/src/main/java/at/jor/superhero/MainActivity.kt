@@ -3,9 +3,14 @@ package at.jor.superhero
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
+import androidx.core.view.doOnLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import at.jor.superhero.databinding.HomeBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,7 +23,10 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var adBanner: AdView
     private lateinit var bnd: HomeBinding
+    private lateinit var categoryListAdapter: CategoryListAdapter
+
     private var BASE_URL = "http://nagdibai.xyz/wally-api/"
     private val homeCategoryList = ArrayList<Category>()
 
@@ -26,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bnd = HomeBinding.inflate(layoutInflater)
         setContentView(R.layout.home)
+        adsInit()
         grabThemWallpapers()
     }
 
@@ -51,10 +60,8 @@ class MainActivity : AppCompatActivity() {
                     data.appBlob.categories.forEach{
                         homeCategoryList.add(Category(it.name, it.cover, it.wallies))
                     }
+                    setupCategoryList()
 
-                    homeCategoryList.forEach {
-                        Log.e("Lenduk paav", it.toString())
-                    }
                 } else {
                     Log.e("MainActivity", "API failed 400")
                 }
@@ -66,4 +73,24 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
+    private fun adsInit() {
+        MobileAds.initialize(this) {}
+        adBanner = bnd.adBannerHome
+        val adRequest = AdRequest.Builder().build()
+        adBanner.loadAd(adRequest)
+    }
+
+    private fun setupCategoryList() {
+        // Popular Images
+        val rvHome: RecyclerView = bnd.rvHome
+        categoryListAdapter = CategoryListAdapter(homeCategoryList, this, 428)
+        rvHome.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+        rvHome.adapter = categoryListAdapter
+        categoryListAdapter.notifyDataSetChanged()
+        rvHome.doOnLayout {
+            val imgWidth = it.measuredWidth
+        }
+    }
+
 }

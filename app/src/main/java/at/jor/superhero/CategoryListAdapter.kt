@@ -35,26 +35,18 @@ internal class CategoryListAdapter(private var itemsList: ArrayList<Category>, p
         holder.ivHolderLayout.getLayoutParams().width = width
         holder.ivHolderLayout.getLayoutParams().height = holder.height
         if (item != null) {
-            Log.e("CATEGORY", "----- good -----")
             Glide.with(context)
                 .load(item.cover)
                 .skipMemoryCache(true)
                 .placeholder(circularProgressDrawable)
                 .into(holder.ivHomeItem)
-        } else {
-            Log.e("CATEGORY", "----- bad -----")
         }
-
-
-//        holder.itemImageView.setOnClickListener {
-//            val intent = Intent(context, PhotoWindow::class.java)
-//            intent.putExtra("StartIdx", position)
-//            intent.putExtra("ItemsList", itemsList)
-//
-//            context.startActivity(intent)
-//        }
+        holder.ivHolderLayout.setOnClickListener {
+            val intent = Intent(context, PhotoShelf::class.java)
+            context.startActivity(intent)
+        }
     }
     override fun getItemCount(): Int {
-        return 3
+        return itemsList.size
     }
 }

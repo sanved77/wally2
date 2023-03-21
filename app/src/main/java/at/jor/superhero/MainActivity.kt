@@ -33,8 +33,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bnd = HomeBinding.inflate(layoutInflater)
-        setContentView(R.layout.home)
+        setContentView(bnd.root)
         adsInit()
+        setupCategoryList()
         grabThemWallpapers()
     }
 
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                     data.appBlob.categories.forEach{
                         homeCategoryList.add(Category(it.name, it.cover, it.wallies))
                     }
-                    setupCategoryList()
+                    categoryListAdapter.notifyDataSetChanged()
 
                 } else {
                     Log.e("MainActivity", "API failed 400")
@@ -82,14 +83,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupCategoryList() {
-        // Popular Images
         val rvHome: RecyclerView = bnd.rvHome
-        categoryListAdapter = CategoryListAdapter(homeCategoryList, this, 428)
-        rvHome.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-        rvHome.adapter = categoryListAdapter
-        categoryListAdapter.notifyDataSetChanged()
         rvHome.doOnLayout {
             val imgWidth = it.measuredWidth
+            categoryListAdapter = CategoryListAdapter(homeCategoryList, this, imgWidth)
+            rvHome.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+            rvHome.adapter = categoryListAdapter
         }
     }
 

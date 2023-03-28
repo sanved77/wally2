@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ internal class CategoryListAdapter(private var itemsList: ArrayList<Category>, p
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var ivHomeItem: ImageView = view.findViewById(R.id.ivHomeItem)
         var ivHolderLayout: ConstraintLayout = view.findViewById(R.id.cvHomeItem)
+        var tvCategoryLabel: TextView = view.findViewById(R.id.tvCategoryLabel)
         val height = (width/16)*9
     }
     @NonNull
@@ -32,8 +34,9 @@ internal class CategoryListAdapter(private var itemsList: ArrayList<Category>, p
         circularProgressDrawable.centerRadius = 60f
         circularProgressDrawable.start()
         val item = itemsList?.get(position)
-        holder.ivHolderLayout.getLayoutParams().width = width
-        holder.ivHolderLayout.getLayoutParams().height = holder.height
+        holder.tvCategoryLabel.text = item?.name
+        holder.ivHolderLayout.layoutParams.width = width
+        holder.ivHolderLayout.layoutParams.height = holder.height
         if (item != null) {
             Glide.with(context)
                 .load(item.cover)
@@ -43,6 +46,8 @@ internal class CategoryListAdapter(private var itemsList: ArrayList<Category>, p
         }
         holder.ivHolderLayout.setOnClickListener {
             val intent = Intent(context, PhotoShelf::class.java)
+            intent.putExtra("CategoryLabel", item?.name)
+            intent.putExtra("Wallies", item?.wallies as ArrayList<String>)
             context.startActivity(intent)
         }
     }

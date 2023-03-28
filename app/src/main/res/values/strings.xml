@@ -5,7 +5,9 @@
 
 <!--     Original -->
 <!--    <string name="ad_home_banner">ca-app-pub-2380327133535299/7983026054</string>-->
+<!--    <string name="ad_shelf_banner">ca-app-pub-2380327133535299/3782144325</string>-->
 
 <!--    Testing ads -->
     <string name="ad_home_banner">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ad_shelf_banner">ca-app-pub-2380327133535299/6300978111</string>
 </resources>

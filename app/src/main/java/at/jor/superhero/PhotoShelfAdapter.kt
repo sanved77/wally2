@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ internal class PhotoShelfAdapter(private var itemsList: ArrayList<String>, priva
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var itemImageView: ImageView = view.findViewById(R.id.ivPopListItem)
         var popItemCard: LinearLayout = view.findViewById(R.id.popItemCard)
+        var tvTest: TextView = view.findViewById(R.id.tvTest)
         var llPhotoHolder: LinearLayout = view.findViewById(R.id.llPhotoHolder)
         val photoHolderParam = llPhotoHolder.layoutParams as ViewGroup.MarginLayoutParams
         val cardParam = popItemCard.layoutParams as ViewGroup.MarginLayoutParams

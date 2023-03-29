@@ -2,7 +2,6 @@ package at.jor.superhero
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,10 +43,11 @@ internal class CategoryListAdapter(private var itemsList: ArrayList<Category>, p
                 .placeholder(circularProgressDrawable)
                 .into(holder.ivHomeItem)
         }
+        val newWallies = ArrayList(item?.wallies)
         holder.ivHolderLayout.setOnClickListener {
             val intent = Intent(context, PhotoShelf::class.java)
             intent.putExtra("CategoryLabel", item?.name)
-            intent.putExtra("Wallies", item?.wallies as ArrayList<String>)
+            intent.putExtra("Wallies", newWallies)
             context.startActivity(intent)
         }
     }

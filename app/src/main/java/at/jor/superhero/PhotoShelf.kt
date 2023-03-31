@@ -2,21 +2,16 @@ package at.jor.superhero
 
 import android.app.Activity
 import android.graphics.Insets
-import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.Display
 import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.doOnLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import at.jor.superhero.databinding.PhotoShelfBinding
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
+import kotlin.collections.ArrayList
 
 
 class PhotoShelf : AppCompatActivity() {
@@ -50,7 +45,7 @@ class PhotoShelf : AppCompatActivity() {
         rvShelf.adapter = photoShelfAdapter
     }
 
-    fun getScreenWidth(activity: Activity): Int {
+    private fun getScreenWidth(activity: Activity): Int {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             val windowMetrics = activity.windowManager.currentWindowMetrics
             val insets: Insets = windowMetrics.windowInsets

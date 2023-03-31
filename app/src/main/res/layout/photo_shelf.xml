@@ -18,7 +18,7 @@
     <com.google.android.gms.ads.AdView
         android:id="@+id/adBannerShelf"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="91dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:adSize="SMART_BANNER"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="101dp" />
+        app:layout_constraintGuide_end="91dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

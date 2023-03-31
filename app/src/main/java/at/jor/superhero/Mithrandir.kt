@@ -33,6 +33,27 @@ fun hideSystemUI(window: Window) {
 
 }
 
+fun Context.showDialog(
+    title: String,
+    body: String,
+    btnText: String,
+    cancelBtnText: String = "",
+    callback: () -> Unit
+) {
+    AlertDialog.Builder(this, R.style.AlertDialogTheme).also {
+        it.setTitle(title)
+        it.setMessage(body)
+        it.setPositiveButton(btnText) { _, _ ->
+            callback()
+        }
+        if(cancelBtnText != "") {
+            it.setNegativeButton(cancelBtnText) { _, _ ->
+                Log.d("Mithrandir", "Cancel pressed on ad watch")
+            }
+        }
+    }.create().show()
+}
+
 // Shows the system bars by removing all the flags
 fun showSystemUI(window: Window) {
     window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE

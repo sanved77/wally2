@@ -63,12 +63,12 @@ internal class PhotoShelfAdapter(private var itemsList: ArrayList<String>, priva
                 }
             })
             .into(holder.itemImageView)
-//        holder.itemImageView.setOnClickListener {
-//            val intent = Intent(context, PhotoWindow::class.java)
-//            intent.putExtra("StartIdx", position)
-//            intent.putExtra("ItemsList", itemsList)
-//            context.startActivity(intent)
-//        }
+        holder.itemImageView.setOnClickListener {
+            val intent = Intent(context, PhotoWindow::class.java)
+            intent.putExtra("StartIdx", position)
+            intent.putExtra("ItemsList", itemsList)
+            context.startActivity(intent)
+        }
     }
     override fun getItemCount(): Int {
         return itemsList.size

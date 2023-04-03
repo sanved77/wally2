@@ -33,6 +33,10 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.yalantis.ucrop.UCrop
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,13 +56,12 @@ class PhotoWindow : AppCompatActivity() {
     private var startIdx = 0
     private lateinit var itemsList: ArrayList<String>
 
-    private var cacheDBinMem = true
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     private var TAG = "PhotoWindow"
 
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private var mRewardedAd: RewardedAd? = null
     private var mInterstitialAd: InterstitialAd? = null
     private lateinit var options: UCrop.Options
 
@@ -70,12 +73,20 @@ class PhotoWindow : AppCompatActivity() {
         bnd = PhotoWindowSlideBinding.inflate(layoutInflater)
         setContentView(bnd.root)
 
+        firebaseInit()
         initAdsAndBanner()
         setViewPager()
         setButtons()
         loadFullPageAd()
         setActivityCallback()
         setUpUCrop()
+    }
+
+    private fun firebaseInit() {
+        firebaseAnalytics = Firebase.analytics
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, "PhotoWindow")
+        }
     }
 
     private fun initAdsAndBanner() {
@@ -143,6 +154,10 @@ class PhotoWindow : AppCompatActivity() {
             .withAspectRatio(width.toFloat(), height.toFloat())
             .withMaxResultSize(width, height)
             .getIntent(this)
+
+        firebaseAnalytics.logEvent("Apply") {
+            param("Url", itemsList[viewPager.currentItem])
+        }
 
         resultLauncher.launch(cropper)
     }
@@ -245,6 +260,9 @@ class PhotoWindow : AppCompatActivity() {
             snack.show()
             if (mInterstitialAd != null) {
                 mInterstitialAd?.show(this@PhotoWindow)
+            }
+            firebaseAnalytics.logEvent("Download") {
+                param("Url", itemsList[viewPager.currentItem])
             }
         }
     }

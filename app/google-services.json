@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "743631459869",
+    "project_id": "wally-1fcc2",
+    "storage_bucket": "wally-1fcc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743631459869:android:5547eb0e768f01237d18f4",
+        "android_client_info": {
+          "package_name": "at.jor.superhero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743631459869-l6961db1o0s271mobn670695iper28kk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPne6MkaZIlvrYp7Wmme-Owj9lGFd6PB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743631459869-l6961db1o0s271mobn670695iper28kk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

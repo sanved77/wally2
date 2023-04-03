@@ -11,6 +11,10 @@ import at.jor.superhero.databinding.HomeBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bnd: HomeBinding
     private lateinit var categoryListAdapter: CategoryListAdapter
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     private var BASE_URL = "http://nagdibai.xyz/wally-api/"
     private val homeCategoryList = ArrayList<Category>()
 
@@ -34,9 +40,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bnd = HomeBinding.inflate(layoutInflater)
         setContentView(bnd.root)
+        firebaseInit()
         adsInit()
         setupCategoryList()
         grabThemWallpapers()
+    }
+
+    private fun firebaseInit() {
+        firebaseAnalytics = Firebase.analytics
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, "MainActivity")
+        }
     }
 
     private fun grabThemWallpapers() {

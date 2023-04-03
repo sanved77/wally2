@@ -11,6 +11,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import at.jor.superhero.databinding.PhotoShelfBinding
 import com.google.android.gms.ads.*
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import kotlin.collections.ArrayList
 
 
@@ -22,13 +26,24 @@ class PhotoShelf : AppCompatActivity() {
     private lateinit var wallies: ArrayList<String>
     private lateinit var photoShelfAdapter: PhotoShelfAdapter
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bnd = PhotoShelfBinding.inflate(layoutInflater)
         setContentView(bnd.root)
+        firebaseInit()
         adsInit()
         grabStuff()
         setupShelfGrid()
+    }
+
+    private fun firebaseInit() {
+        firebaseAnalytics = Firebase.analytics
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, "PhotoShelf")
+        }
     }
 
     private fun grabStuff() {

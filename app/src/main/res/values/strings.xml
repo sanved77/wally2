@@ -1,15 +1,17 @@
 <resources>
-    <string name="app_name">Superhero Wallpapers</string>
-    <string name="app">Superhero</string>
-    <string name="ad_admob_app_id">ca-app-pub-2380327133535299~7689999129</string>
+    <string name="app_name">Material Wallpapers 4k</string>
+    <string name="app">Material</string>
+    <string name="ad_admob_app_id">ca-app-pub-4819992802715148~8712962834</string>
 
 <!--     Original -->
-<!--    <string name="ad_home_banner">ca-app-pub-2380327133535299/7983026054</string>-->
-<!--    <string name="ad_shelf_banner">ca-app-pub-2380327133535299/3782144325</string>-->
+    <string name="ad_home_banner">ca-app-pub-4819992802715148/7832546887</string>
+    <string name="ad_shelf_banner">ca-app-pub-4819992802715148/4551777426</string>
+    <string name="ad_photowindow_banner">ca-app-pub-4819992802715148/9838342247</string>
+    <string name="admob_photowindow_full_test">ca-app-pub-4819992802715148/8333688889</string>
 
-<!--    Testing ads -->
-    <string name="ad_home_banner">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="ad_shelf_banner">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="ad_photowindow_banner">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="admob_photowindow_full_test">ca-app-pub-3940256099942544/1033173712</string>
+    <!--    Testing ads -->
+<!--    <string name="ad_home_banner">ca-app-pub-3940256099942544/6300978111</string>-->
+<!--    <string name="ad_shelf_banner">ca-app-pub-3940256099942544/6300978111</string>-->
+<!--    <string name="ad_photowindow_banner">ca-app-pub-3940256099942544/6300978111</string>-->
+<!--    <string name="admob_photowindow_full_test">ca-app-pub-3940256099942544/1033173712</string>-->
 </resources>
